@@ -1,0 +1,39 @@
+version: '3'
+
+services: 
+  zookeeper01:
+    image: zookeeper:3.4
+    container_name: zookeeper01
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
+    volumes:
+      - ./zookeeper01:/data
+    networks:
+      - xbug-network
+
+  zookeeper02:
+    image: zookeeper:3.4
+    container_name: zookeeper02
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
+    volumes:
+      - ./zookeeper02:/data
+    networks:
+      - xbug-network
+
+  zookeeper03:
+    image: zookeeper:3.4
+    container_name: zookeeper03
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
+    volumes:
+      - ./zookeeper03:/data
+    networks:
+      - xbug-network
+
+networks:
+  xbug-network:
+    external: true  
