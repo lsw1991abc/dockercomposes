@@ -3,7 +3,8 @@
 本示例依赖Docker，完全参考Hadoop-2.7.4官方说明，使用Quorum Journal Manager构建了一个基本高可用的Hadoop集群Demo。  
 
 ------------------
-共创建了3个ZK，3个JournalNode，2个NameNode（主、备），3个DataNode
+~~共创建了3个ZK，3个JournalNode，2个NameNode（主、备），3个DataNode~~  
+将ZK的创建单独分离到[zookeeper-qurom](../zookeeper-qurom)。剩余共创建了3个JournalNode，2个NameNode（主、备），3个DataNode。
 
 JournalNode注意事项：
 > JournalNode machines - the machines on which you run the JournalNodes. The JournalNode daemon is relatively lightweight, so these daemons may reasonably be collocated on machines with other Hadoop daemons, for example NameNodes, the JobTracker, or the YARN ResourceManager. Note: There must be at least 3 JournalNode daemons, since edit log modifications must be written to a majority of JNs. This will allow the system to tolerate the failure of a single machine. You may also run more than 3 JournalNodes, but in order to actually increase the number of failures the system can tolerate, you should run an odd number of JNs, (i.e. 3, 5, 7, etc.). Note that when running with N JournalNodes, the system can tolerate at most (N - 1) / 2 failures and continue to function normally.
