@@ -3,7 +3,7 @@ version: '3'
 services: 
 
   namenode01:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: namenode01
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -22,7 +22,7 @@ services:
       - 9001:9000
 
   namenode02:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: namenode02
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -41,7 +41,7 @@ services:
       - 9002:9000
 
   journalnode01:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: journalnode01
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -51,7 +51,7 @@ services:
       - xbug-network
 
   journalnode02:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: journalnode02
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -61,7 +61,7 @@ services:
       - xbug-network
 
   journalnode03:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: journalnode03
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -71,7 +71,7 @@ services:
       - xbug-network
 
   datanode01:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: datanode01
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -81,7 +81,7 @@ services:
       - xbug-network
 
   datanode02:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: datanode02
     volumes:
       - ./.ssh/:/root/.ssh/
@@ -91,7 +91,7 @@ services:
       - xbug-network
 
   datanode03:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: datanode03
     volumes:
       - ./.ssh/:/root/.ssh/
