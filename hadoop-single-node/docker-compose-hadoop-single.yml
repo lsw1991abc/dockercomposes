@@ -2,7 +2,7 @@ version: '3'
 
 services: 
   hadoop-single:
-    image: lsw1991abc/hadoop-base:0.1
+    image: lsw1991abc/hadoop-base:2.7.4
     container_name: hadoop-single
     volumes:
       - ./.ssh/:/root/.ssh/
