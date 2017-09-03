@@ -1,0 +1,20 @@
+version: '3'
+
+services: 
+  mysql:
+    image: mysql:5.7.18
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - 3306:3306
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./volume-mysql/:/var/lib/mysql/
+    networks:
+      - xbug-network
+
+networks:
+  xbug-network:
+    external: true  

@@ -8,6 +8,8 @@ services:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
       - ./zookeeper01/:/data/
     networks:
       - xbug-network
@@ -19,6 +21,8 @@ services:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
       - ./zookeeper02/:/data/
     networks:
       - xbug-network
@@ -30,6 +34,8 @@ services:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
       - ./zookeeper03/:/data/
     networks:
       - xbug-network
