@@ -1,0 +1,3 @@
+/hadoop-single/
+/hive-base/
+!/hbase-1.3.1/
