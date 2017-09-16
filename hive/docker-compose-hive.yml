@@ -13,11 +13,14 @@ services:
       - ./apache-hive-2.3.0-bin/lib/mysql-connector-java-5.1.44-bin.jar:/opt/apache-hive-2.3.0-bin/lib/mysql-connector-java-5.1.44-bin.jar
     networks:
       - xbug-network
+    domainname: xbug-network
+    hostname: hive-base
     ports:
       - 50070:50070
       - 8020:8020
       - 8088:8088
       - 9000:9000
+      - 9083:9083
 
 networks:
   xbug-network:
