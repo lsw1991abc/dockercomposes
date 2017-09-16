@@ -77,3 +77,43 @@ hive --service metastore
 ## MySQL连接
 
 为了测试，方便使用了非ssl连接`useSSL=false`
+
+
+# hiveserver2 和 beeline
+
+首先要配置在Hadoop里添加
+> 主要原因是hadoop引入了一个安全伪装机制，使得hadoop 不允许上层系统直接将实际用户传递到hadoop层，而是将实际用户传递给一个超级代理，由此代理在hadoop上执行操作，避免任意客户端随意操作hadoop
+
+```
+<property>
+    <name>hadoop.proxyuser.root.hosts</name>
+    <value>*</value>
+</property>
+<property>
+    <name>hadoop.proxyuser.root.groups</name>
+    <value>*</value>
+</property>
+```
+
+## 启动hiveserver2
+
+```
+hiveserver2
+```
+
+## beeline连接
+
+username:root  
+password:root
+
+```
+root@hive-base> beeline
+
+beeline> !connect jdbc:hive2://hive-base:10000
+Connecting to jdbc:hive2://hive-base:10000
+Enter username for jdbc:hive2://hive-base:10000: root
+Enter password for jdbc:hive2://hive-base:10000: ****
+Connected to: Apache Hive (version 2.3.0)
+Driver: Hive JDBC (version 2.3.0)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+```
