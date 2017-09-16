@@ -2,7 +2,7 @@ version: '3'
 
 services: 
   hive-base:
-    image: hive-base:0.1
+    image: lsw1991abc/hive-base:2.3.0
     container_name: hive-base
     volumes:
       - ./.ssh/:/root/.ssh/
