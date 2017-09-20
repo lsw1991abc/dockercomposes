@@ -1,0 +1,26 @@
+version: '3'
+
+services: 
+  sonarqube:
+    image: sonarqube:6.5
+    container_name: sonarqube
+    environment:
+      SONARQUBE_JDBC_USERNAME: sonar
+      SONARQUBE_JDBC_PASSWORD: sonar
+      SONARQUBE_JDBC_URL: jdbc:mysql://mysql:3306/sonar?useUnicode=true&characterEncoding=utf8&useSSL=false
+    ports:
+      - 9000:9000
+      - 9092:9092
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./sonarqube-conf:/opt/sonarqube/conf
+      - ./sonarqube-data:/opt/sonarqube/data
+      - ./sonarqube-extensions:/opt/sonarqube/extensions
+      - ./sonarqube-bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    networks:
+      - xbug-network
+
+networks:
+  xbug-network:
+    external: true  

@@ -540,7 +540,7 @@
   </property>
   <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:mysql://mysql:3306/hive?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false</value>
+    <value>jdbc:mysql://mysql:3306/hive?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</value>
   </property>
   <property>
     <name>hive.metastore.dbaccess.ssl.properties</name>
