@@ -1,8 +1,0 @@
-github,false,sonar-github-plugin-1.4.1.822.jar|bff4c7e3d22881d044766cec5bb21823
-java,true,sonar-java-plugin-4.13.0.11627.jar|3a1f5111f5471e4c039c55a6fdcb9cee
-ldap,false,sonar-ldap-plugin-2.2.0.608.jar|90da8f56fbbbb3624b8a3f6f1075860a
-scmgit,false,sonar-scm-git-plugin-1.2.jar|b57acae513dee2bff1161764c6771bcb
-authgithub,false,sonar-auth-github-plugin-1.3.jar|ca07be109d13616b2d2e8c61362d3af6
-php,true,sonar-php-plugin-2.10.0.2087.jar|b1dc73dca4df16fd36ba3001fd557e25
-checkstyle,false,checkstyle-sonar-plugin-3.7.jar|69d0b4d513b7d4da3daa5681161b1ce8
-javascript,true,sonar-javascript-plugin-3.1.1.5128.jar|f8dd63b9b3dcce365eaecd68ac99c86f
