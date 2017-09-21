@@ -38,3 +38,6 @@ rabbitmqctl cluster_status
 # 高可用
 
 使用`haproxy`配置了高可用
+
+## 配置故障自动转移
+参考 http://www.cnblogs.com/TimeMaster/p/7069073.html
