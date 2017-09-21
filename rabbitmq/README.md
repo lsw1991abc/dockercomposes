@@ -23,10 +23,10 @@ rabbitmqctl join_cluster rabbit@rabbitmq01
 
 ## 更改节点类型（内存型或磁盘型）
 ```
-rabbitmqctl rchange_cluster_node_type ram
+rabbitmqctl change_cluster_node_type ram
 
 // 默认
-rabbitmqctl rchange_cluster_node_type disk
+rabbitmqctl change_cluster_node_type disk
 ```
 
 ## 查看状态
