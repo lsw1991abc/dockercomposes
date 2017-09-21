@@ -8,8 +8,6 @@ services:
       RABBITMQ_ERLANG_COOKIE: xbug.lol
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: root
-    volumes:
-      - ./start.sh:/opt/start.sh
     networks:
       - xbug-network
     domainname: xbug-network
@@ -24,10 +22,6 @@ services:
       RABBITMQ_ERLANG_COOKIE: xbug.lol
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: root
-    volumes:
-      - ./start.sh:/opt/start.sh
-    depends_on:
-      - rabbitmq01
     networks:
       - xbug-network
     domainname: xbug-network
@@ -42,10 +36,6 @@ services:
       RABBITMQ_ERLANG_COOKIE: xbug.lol
       RABBITMQ_DEFAULT_USER: root
       RABBITMQ_DEFAULT_PASS: root
-    volumes:
-      - ./start.sh:/opt/start.sh
-    depends_on:
-      - rabbitmq02
     networks:
       - xbug-network
     domainname: xbug-network
