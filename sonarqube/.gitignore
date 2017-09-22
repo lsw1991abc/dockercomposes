@@ -1,4 +1,1 @@
-/sonarqube-extensions/
-/sonarqube-bundled-plugins/
-/sonarqube-data/
-/sonarqube-conf/
+/volume-sonar/

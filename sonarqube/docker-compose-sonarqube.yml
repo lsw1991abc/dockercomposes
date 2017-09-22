@@ -14,10 +14,10 @@ services:
     volumes:
       - ../common/conf/localtime:/etc/localtime:ro
       - ../common/conf/timezone:/etc/timezone:ro
-      - ./sonarqube-conf:/opt/sonarqube/conf
-      - ./sonarqube-data:/opt/sonarqube/data
-      - ./sonarqube-extensions:/opt/sonarqube/extensions
-      - ./sonarqube-bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+      - ./volume-sonar/sonarqube-conf:/opt/sonarqube/conf
+      - ./volume-sonar/sonarqube-data:/opt/sonarqube/data
+      - ./volume-sonar/sonarqube-extensions:/opt/sonarqube/extensions
+      - ./volume-sonar/sonarqube-bundled-plugins:/opt/sonarqube/lib/bundled-plugins
     networks:
       - xbug-network
 
