@@ -13,6 +13,8 @@ services:
       - ./zookeeper01/:/data/
     networks:
       - xbug-network
+    domainname: xbug-network
+    hostname: zookeeper01
 
   zookeeper02:
     image: zookeeper:3.4
@@ -26,6 +28,8 @@ services:
       - ./zookeeper02/:/data/
     networks:
       - xbug-network
+    domainname: xbug-network
+    hostname: zookeeper02
 
   zookeeper03:
     image: zookeeper:3.4
@@ -39,6 +43,8 @@ services:
       - ./zookeeper03/:/data/
     networks:
       - xbug-network
+    domainname: xbug-network
+    hostname: zookeeper03
 
 networks:
   xbug-network:
