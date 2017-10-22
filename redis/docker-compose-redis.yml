@@ -1,0 +1,20 @@
+version: '3'
+
+services: 
+  redis:
+    image: redis:4.0
+    container_name: redis
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./redis-data/:/data/
+    networks:
+      - xbug-network
+    domainname: xbug-network
+    hostname: redis
+    ports:
+      - 6379:6379
+
+networks:
+  xbug-network:
+    external: true  
