@@ -6,7 +6,7 @@ services:
     container_name: zookeeper01
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
     volumes:
       - ../common/conf/localtime:/etc/localtime:ro
       - ../common/conf/timezone:/etc/timezone:ro
@@ -21,7 +21,7 @@ services:
     container_name: zookeeper02
     environment:
       ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
     volumes:
       - ../common/conf/localtime:/etc/localtime:ro
       - ../common/conf/timezone:/etc/timezone:ro
@@ -36,7 +36,7 @@ services:
     container_name: zookeeper03
     environment:
       ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
     volumes:
       - ../common/conf/localtime:/etc/localtime:ro
       - ../common/conf/timezone:/etc/timezone:ro
@@ -45,6 +45,36 @@ services:
       - xbug-network
     domainname: xbug-network
     hostname: zookeeper03
+
+  zookeeper04:
+    image: zookeeper:3.4
+    container_name: zookeeper04
+    environment:
+      ZOO_MY_ID: 4
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./zookeeper04/:/data/
+    networks:
+      - xbug-network
+    domainname: xbug-network
+    hostname: zookeeper04
+
+  zookeeper05:
+    image: zookeeper:3.4
+    container_name: zookeeper05
+    environment:
+      ZOO_MY_ID: 5
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./zookeeper05/:/data/
+    networks:
+      - xbug-network
+    domainname: xbug-network
+    hostname: zookeeper05
 
 networks:
   xbug-network:
