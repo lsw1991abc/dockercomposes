@@ -1,0 +1,16 @@
+version: '3'
+
+services: 
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.2
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch01:9200
+    networks:
+      - xbug-network
+    ports:
+      - 5601:5601
+
+networks:
+  xbug-network:
+    external: true  

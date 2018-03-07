@@ -1,0 +1,41 @@
+version: '3'
+
+services: 
+  elasticsearch01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    container_name: elasticsearch01
+    environment:
+      - cluster.name=xbug-elasticsearch-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./volume-elasticsearch/data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - xbug-network
+
+  elasticsearch02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    container_name: elasticsearch02
+    environment:
+      - cluster.name=xbug-elasticsearch-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch01"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./volume-elasticsearch/data02:/usr/share/elasticsearch/data
+    networks:
+      - xbug-network
+
+networks:
+  xbug-network:
+    external: true  
