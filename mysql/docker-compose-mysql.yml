@@ -12,7 +12,7 @@ services:
       - ../common/conf/localtime:/etc/localtime:ro
       - ../common/conf/timezone:/etc/timezone:ro
       - ./my.cnf:/etc/mysql/my.cnf:ro
-      - ./volume-mysql/:/var/lib/mysql/
+      - ./volume-mysql:/var/lib/mysql
     networks:
       - xbug-network
 
