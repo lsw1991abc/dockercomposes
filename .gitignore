@@ -1,0 +1,4 @@
+.idea/
+/wwwroot/
+!/wwwroot/index.html
+
