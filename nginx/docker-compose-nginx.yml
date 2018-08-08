@@ -1,0 +1,22 @@
+version: '3'
+
+services: 
+  nginx:
+    image: nginx:1.14
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./config:/etc/nginx/conf.d:ro
+      - ./log:/var/log/nginx
+      - ../wwwroot:/opt/www/root
+    external_links:
+      - php7fpm
+    networks:
+      - xbug-network
+
+networks:
+  xbug-network:
+    external: true  
