@@ -1,0 +1,22 @@
+version: '3'
+
+services: 
+  php7fpm:
+    image: lsw1991abc/php:7-fpm
+    container_name: php7fpm
+    volumes:
+      - ../common/conf/localtime:/etc/localtime:ro
+      - ../common/conf/timezone:/etc/timezone:ro
+      - ./php-fpm.conf:/usr/local/etc/php-fpm.conf:ro
+      - ./php.ini:/usr/local/etc/php/php.ini:ro
+      - ../wwwroot/:/opt/www/root/
+    external_links:
+      - mysql
+    networks:
+      - xbug-network
+    extra_hosts:
+      - "mysql-host:8.8.8.8"
+
+networks:
+  xbug-network:
+    external: true
