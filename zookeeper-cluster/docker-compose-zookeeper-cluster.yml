@@ -1,81 +1,58 @@
 version: '3'
 
-services: 
+services:
   zookeeper01:
     image: zookeeper:3.4
     container_name: zookeeper01
     environment:
+      ZOO_MAX_CLIENT_CNXNS: 200
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./zookeeper01/:/data/
+      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/zookeeper/01/data/:/data/
+      - /data/k8s-volume/zookeeper/01/datalog/:/datalog/
     networks:
-      - xbug-network
-    domainname: xbug-network
+      - mobe-network
+    domainname: mobe-network
     hostname: zookeeper01
 
   zookeeper02:
     image: zookeeper:3.4
     container_name: zookeeper02
     environment:
+      ZOO_MAX_CLIENT_CNXNS: 200
       ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./zookeeper02/:/data/
+      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/zookeeper/02/data/:/data/
+      - /data/k8s-volume/zookeeper/02/datalog/:/datalog/
     networks:
-      - xbug-network
-    domainname: xbug-network
+      - mobe-network
+    domainname: mobe-network
     hostname: zookeeper02
 
   zookeeper03:
     image: zookeeper:3.4
     container_name: zookeeper03
     environment:
+      ZOO_MAX_CLIENT_CNXNS: 200
       ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
+      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./zookeeper03/:/data/
+      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/zookeeper/03/data/:/data/
+      - /data/k8s-volume/zookeeper/03/datalog/:/datalog/
     networks:
-      - xbug-network
-    domainname: xbug-network
+      - mobe-network
+    domainname: mobe-network
     hostname: zookeeper03
 
-  zookeeper04:
-    image: zookeeper:3.4
-    container_name: zookeeper04
-    environment:
-      ZOO_MY_ID: 4
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
-    volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./zookeeper04/:/data/
-    networks:
-      - xbug-network
-    domainname: xbug-network
-    hostname: zookeeper04
-
-  zookeeper05:
-    image: zookeeper:3.4
-    container_name: zookeeper05
-    environment:
-      ZOO_MY_ID: 5
-      ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888 server.4=zookeeper04:2888:3888 server.5=zookeeper05:2888:3888
-    volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./zookeeper05/:/data/
-    networks:
-      - xbug-network
-    domainname: xbug-network
-    hostname: zookeeper05
 
 networks:
-  xbug-network:
-    external: true  
+  mobe-network:
+    external: true
