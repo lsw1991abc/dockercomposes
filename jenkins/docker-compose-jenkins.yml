@@ -1,19 +1,19 @@
 version: '3'
 
-services: 
+services:
   jenkins:
-    image: jenkins:2.60.3
+    image: jenkins/jenkins:lts
     container_name: jenkins
     ports:
-      - 18080:8080
+      - 8080:8080
       - 50000:50000
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./volume-jenkins/jenkins_home:/var/jenkins_home
+      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/jenkins/jenkins_home:/var/jenkins_home
     networks:
-      - xbug-network
+      - mobe-network
 
 networks:
-  xbug-network:
-    external: true  
+  mobe-network:
+    external: true
