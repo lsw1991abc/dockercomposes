@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   zookeeper01:
@@ -9,12 +9,10 @@ services:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
-      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
-      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
       - /data/k8s-volume/zookeeper/01/data/:/data/
       - /data/k8s-volume/zookeeper/01/datalog/:/datalog/
-    networks:
-      - mobe-network
     domainname: mobe-network
     hostname: zookeeper01
 
@@ -26,12 +24,10 @@ services:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
-      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
-      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
       - /data/k8s-volume/zookeeper/02/data/:/data/
       - /data/k8s-volume/zookeeper/02/datalog/:/datalog/
-    networks:
-      - mobe-network
     domainname: mobe-network
     hostname: zookeeper02
 
@@ -43,16 +39,15 @@ services:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zookeeper01:2888:3888 server.2=zookeeper02:2888:3888 server.3=zookeeper03:2888:3888
     volumes:
-      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
-      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
       - /data/k8s-volume/zookeeper/03/data/:/data/
       - /data/k8s-volume/zookeeper/03/datalog/:/datalog/
-    networks:
-      - mobe-network
     domainname: mobe-network
     hostname: zookeeper03
 
 
 networks:
-  mobe-network:
-    external: true
+  default:
+    external:
+      name: mobe-network

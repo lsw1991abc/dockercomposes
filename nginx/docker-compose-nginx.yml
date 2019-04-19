@@ -1,22 +1,19 @@
 version: '3'
 
-services: 
+services:
   nginx:
-    image: nginx:1.14
+    image: nginx:1.15
     container_name: nginx
     ports:
       - 80:80
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./config:/etc/nginx/conf.d:ro
-      - ./log:/var/log/nginx
-      - ../wwwroot:/opt/www/root
-    external_links:
-      - php7fpm
-    networks:
-      - xbug-network
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
+      - /data/k8s-volume/nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - /data/k8s-volume/nginx/logs/:/var/log/nginx/
+      - /data/k8s-volume/wwwroot/:/data/k8s-volume/wwwroot/
 
 networks:
-  xbug-network:
-    external: true  
+  default:
+    external:
+      name: mobe-network
