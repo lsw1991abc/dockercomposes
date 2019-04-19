@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   jenkins:
@@ -8,12 +8,12 @@ services:
       - 8080:8080
       - 50000:50000
     volumes:
-      - /data/k8s-volume/common/conf/localtime:/etc/localtime:ro
-      - /data/k8s-volume/common/conf/timezone:/etc/timezone:ro
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
       - /data/k8s-volume/jenkins/jenkins_home:/var/jenkins_home
-    networks:
-      - mobe-network
+    domainname: mobe-network
 
 networks:
-  mobe-network:
-    external: true
+  default:
+    external:
+      name: mobe-network
