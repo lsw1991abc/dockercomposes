@@ -1,20 +1,18 @@
-version: '3'
+version: '3.7'
 
-services: 
+services:
   redis:
-    image: redis:4.0
+    image: redis:5.0
     container_name: redis
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./redis-data/:/data/
-    networks:
-      - xbug-network
-    domainname: xbug-network
-    hostname: redis
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
+      - /data/k8s-volume/redis/data/:/data/
+    domainname: mobe-network
     ports:
       - 6379:6379
 
 networks:
-  xbug-network:
-    external: true  
+  default:
+    external:
+      name: mobe-network
