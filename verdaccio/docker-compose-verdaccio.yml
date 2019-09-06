@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:4
+    container_name: verdaccio
+    ports:
+      - 4873:4873
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
+      - /data/k8s-volume/verdaccio/conf/:/verdaccio/conf/
+      - /data/k8s-volume/verdaccio/plugins/:/verdaccio/plugins/
+      - /data/k8s-volume/verdaccio/storage/:/verdaccio/storage/
+
+networks:
+  default:
+    external:
+      name: mobe-network
