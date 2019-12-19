@@ -1,16 +1,16 @@
-version: '3'
+version: '3.7'
 
-services: 
+services:
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.2.2
+    image: docker.elastic.co/kibana/kibana:7.5.1
     container_name: kibana
-    environment:
-      ELASTICSEARCH_URL: http://elasticsearch01:9200
-    networks:
-      - xbug-network
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - 5601:5601
 
 networks:
-  xbug-network:
-    external: true  
+  default:
+    external:
+      name: mobe-network
