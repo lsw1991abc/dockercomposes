@@ -1,21 +1,19 @@
 version: '3'
 
-services: 
+services:
   mysql:
-    image: mysql:5.6
+    image: mysql:8.0
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: admin123
     ports:
       - 3306:3306
     volumes:
-      - ../common/conf/localtime:/etc/localtime:ro
-      - ../common/conf/timezone:/etc/timezone:ro
-      - ./my.cnf:/etc/mysql/my.cnf:ro
-      - ./volume-mysql:/var/lib/mysql
-    networks:
-      - xbug-network
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/mysql/data:/var/lib/mysql
+      - /data/k8s-volume/mysql/conf:/etc/mysql:ro
 
 networks:
-  xbug-network:
-    external: true  
+  default:
+    external:
+      name: mobe-network
