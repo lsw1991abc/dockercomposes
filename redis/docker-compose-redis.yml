@@ -4,11 +4,11 @@ services:
   redis:
     image: redis:5.0
     container_name: redis
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", "--appendonly", "yes"]
     volumes:
       - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
-      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
       - /data/k8s-volume/redis/data/:/data/
-    domainname: mobe-network
+      - /data/k8s-volume/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
     ports:
       - 6379:6379
 
