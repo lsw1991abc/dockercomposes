@@ -1,11 +1,14 @@
-version: '3'
+version: '3.7'
 
-services: 
+services:
   elasticsearch01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     container_name: elasticsearch01
     environment:
-      - cluster.name=xbug-elasticsearch-cluster
+      - node.name=elasticsearch01
+      - cluster.name=es-mobe-cloud
+      - discovery.seed_hosts=elasticsearch02,elasticsearch03
+      - cluster.initial_master_nodes=elasticsearch01,elasticsearch02,elasticsearch03
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -13,29 +16,51 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./volume-elasticsearch/data01:/usr/share/elasticsearch/data
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/elasticsearch/data-1/:/usr/share/elasticsearch/data
+      - /data/k8s-volume/elasticsearch/logs-1/:/usr/share/elasticsearch/logs
     ports:
       - 9200:9200
-    networks:
-      - xbug-network
 
   elasticsearch02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     container_name: elasticsearch02
     environment:
-      - cluster.name=xbug-elasticsearch-cluster
+      - node.name=elasticsearch02
+      - cluster.name=es-mobe-cloud
+      - discovery.seed_hosts=elasticsearch01,elasticsearch03
+      - cluster.initial_master_nodes=elasticsearch01,elasticsearch02,elasticsearch03
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=elasticsearch01"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-      - ./volume-elasticsearch/data02:/usr/share/elasticsearch/data
-    networks:
-      - xbug-network
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/elasticsearch/data-2/:/usr/share/elasticsearch/data
+      - /data/k8s-volume/elasticsearch/logs-2/:/usr/share/elasticsearch/logs
+
+  elasticsearch03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    container_name: elasticsearch03
+    environment:
+      - node.name=elasticsearch03
+      - cluster.name=es-mobe-cloud
+      - discovery.seed_hosts=elasticsearch01,elasticsearch02
+      - cluster.initial_master_nodes=elasticsearch01,elasticsearch02,elasticsearch03
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/elasticsearch/data-3/:/usr/share/elasticsearch/data
+      - /data/k8s-volume/elasticsearch/logs-3/:/usr/share/elasticsearch/logs
 
 networks:
-  xbug-network:
-    external: true  
+  default:
+    external:
+      name: mobe-network
