@@ -1,65 +1,20 @@
-version: '3'
+version: '3.7'
 
-services: 
+services:
   rabbitmq01:
-    image: rabbitmq:3.6-management
+    image: rabbitmq:3.8-management
     container_name: rabbitmq01
+    restart: always
     environment:
-      RABBITMQ_ERLANG_COOKIE: xbug.lol
-      RABBITMQ_DEFAULT_USER: root
-      RABBITMQ_DEFAULT_PASS: root
-    networks:
-      - xbug-network
-    domainname: xbug-network
-    hostname: rabbitmq01
+      RABBITMQ_ERLANG_COOKIE: mobe.cloud
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    hostname: rabbitmq.mobe.network
     ports:
-      - 15675:15672
-
-  rabbitmq02:
-    image: rabbitmq:3.6-management
-    container_name: rabbitmq02
-    environment:
-      RABBITMQ_ERLANG_COOKIE: xbug.lol
-      RABBITMQ_DEFAULT_USER: root
-      RABBITMQ_DEFAULT_PASS: root
-    networks:
-      - xbug-network
-    domainname: xbug-network
-    hostname: rabbitmq02
-    ports:
-      - 15676:15672
-
-  rabbitmq03:
-    image: rabbitmq:3.6-management
-    container_name: rabbitmq03
-    environment:
-      RABBITMQ_ERLANG_COOKIE: xbug.lol
-      RABBITMQ_DEFAULT_USER: root
-      RABBITMQ_DEFAULT_PASS: root
-    networks:
-      - xbug-network
-    domainname: xbug-network
-    hostname: rabbitmq03
-    ports:
-      - 15677:15672
-
-  rabbitmq-ha:
-    image: haproxy:1.7
-    container_name: rabbitmq-ha
-    volumes:
-      - ./haproxy-1.7.9/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-    depends_on:
-      - rabbitmq01
-      - rabbitmq02
-      - rabbitmq03
-    ports:
-      - 8100:8100
-      - 5671:5671
       - 5672:5672
-      - 15671:15671
-    networks:
-      - xbug-network
+      - 15672:15672
 
 networks:
-  xbug-network:
-    external: true  
+  default:
+    external:
+      name: mobe-network
