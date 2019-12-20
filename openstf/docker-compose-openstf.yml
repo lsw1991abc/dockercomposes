@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  rethinkdb:
+    image: rethinkdb
+    ports:
+      - "8080:8080"
+      - "28015:28015"
+      - "29015:29015"
+    restart: always
+    volumes:
+      - "/srv/rethinkdb:/data"
+    command: "rethinkdb --bind all --cache-size 2048"
+
+  adbd:
+    image: sorccu/adb
+    privileged: true
+    ports:
+      - "5037:5037"
+    restart: always
+    volumes:
+      - "/dev/bus/usb:/dev/bus/usb"
+
+  stf-local:
+    image: openstf/stf
+    links:
+      - rethinkdb
+      - adbd
+    ports:
+      - "7100:7100"
+      - "7110:7110"
+      - "7120:7120"
+      - "7400-7500:7400-7500"
+    restart: always
+    command: stf local --public-ip 10.168.3.70 --provider-min-port 7400 --provider-max-port 7500 --adb-host adbd
+
+
