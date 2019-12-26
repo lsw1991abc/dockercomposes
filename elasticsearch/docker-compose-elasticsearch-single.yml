@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  elasticsearch-single:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    container_name: elasticsearch-single
+    restart: always
+    environment:
+      - node.name=elasticsearch-single
+      - cluster.name=es-mobe-cloud
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/elasticsearch/data-single/:/usr/share/elasticsearch/data
+      - /data/k8s-volume/elasticsearch/logs-single/:/usr/share/elasticsearch/logs
+    ports:
+      - 9200:9200
+
+networks:
+  default:
+    external:
+      name: mobe-network
