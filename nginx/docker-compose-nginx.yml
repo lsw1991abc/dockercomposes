@@ -2,15 +2,16 @@ version: '3.7'
 
 services:
   nginx:
-    image: nginx:1.15
+    image: nginx:1.21
     container_name: nginx
     ports:
       - 80:80
     volumes:
       - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
-      - /data/k8s-volume/common/timezone/timezone:/etc/timezone:ro
+      - /data/k8s-volume/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - /data/k8s-volume/nginx/conf.d/:/etc/nginx/conf.d/:ro
-      - /data/k8s-volume/nginx/logs/:/var/log/nginx/
+      - /data/k8s-volume/nginx/certs/:/etc/nginx/certs/:ro
+      - /data/k8s-volume/nginx/logs/:/etc/nginx/logs/
       - /data/k8s-volume/wwwroot/:/data/k8s-volume/wwwroot/
 
 networks:
