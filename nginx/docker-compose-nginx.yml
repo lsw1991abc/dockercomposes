@@ -12,7 +12,7 @@ services:
       - /data/k8s-volume/nginx/conf.d/:/etc/nginx/conf.d/:ro
       - /data/k8s-volume/nginx/certs/:/etc/nginx/certs/:ro
       - /data/k8s-volume/nginx/logs/:/etc/nginx/logs/
-      - /data/k8s-volume/wwwroot/:/data/k8s-volume/wwwroot/
+      - /data/wwwroot/:/data/wwwroot/
 
 networks:
   default:

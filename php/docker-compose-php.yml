@@ -10,7 +10,7 @@ services:
       - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
       - ./php-fpm.conf:/usr/local/etc/php-fpm.conf:ro
       - ./php.ini:/usr/local/etc/php/php.ini:ro
-      - /data/k8s-volume/wwwroot/:/data/k8s-volume/wwwroot/
+      - /data/wwwroot/:/data/wwwroot/
 
 networks:
   default:
