@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   elasticsearch-single:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.8-arm64
     container_name: elasticsearch-single
-    restart: always
+#    restart: always
     environment:
       - node.name=elasticsearch-single
       - cluster.name=es-mobe-cloud
@@ -20,6 +20,7 @@ services:
       - /data/k8s-volume/elasticsearch/logs-single/:/usr/share/elasticsearch/logs
     ports:
       - 9200:9200
+      - 9300:9300
 
 networks:
   default:

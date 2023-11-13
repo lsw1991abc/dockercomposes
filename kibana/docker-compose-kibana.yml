@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.5.1
+    image: docker.elastic.co/kibana/kibana:7.17.8-arm64
     container_name: kibana
-    restart: always
+#    restart: always
     volumes:
       - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
       - /data/k8s-volume/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
