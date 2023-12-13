@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: postgres:14.5
+    container_name: postgres
+#    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: rt
+      PGDATA: /var/lib/postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/postgres/data:/var/lib/postgres
+
+networks:
+  default:
+    external:
+      name: mobe-network
