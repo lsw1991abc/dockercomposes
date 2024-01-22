@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  kibana:
+    image: wdkang/kafka-console-ui:v1.0.8
+    container_name: kafka-ui
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/kafka-ui/data:/app/data
+      - /data/k8s-volume/kafka-ui/logs:/app/log
+    ports:
+      - 7766:7766
+
+networks:
+  default:
+    external:
+      name: mobe-network
