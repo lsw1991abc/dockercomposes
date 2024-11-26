@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  redis:
+    image: redis:4.0
+    container_name: redis4
+#    restart: always
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", "--appendonly", "yes"]
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/redis/data4/:/data/
+      - /data/k8s-volume/redis/conf/redis4.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+
+networks:
+  default:
+    external:
+      name: mobe-network
