@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+  certimate:
+    image: registry.cn-shanghai.aliyuncs.com/usual2970/certimate:latest
+    container_name: certimate_server
+    ports:
+      - 8090:8090
+    volumes:
+      - /data/k8s-volume/common/timezone/localtime:/etc/localtime:ro
+      - /data/k8s-volume/nginx/certimate/data:/app/pb_data
+
+networks:
+  default:
+    external:
+      name: mobe-network
