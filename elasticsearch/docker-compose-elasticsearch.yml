@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   elasticsearch01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: elasticsearch01
     restart: always
     environment:
@@ -24,7 +24,7 @@ services:
       - 9200:9200
 
   elasticsearch02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: elasticsearch02
     restart: always
     environment:
@@ -44,7 +44,7 @@ services:
       - /data/k8s-volume/elasticsearch/logs-2/:/usr/share/elasticsearch/logs
 
   elasticsearch03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: elasticsearch03
     restart: always
     environment:
